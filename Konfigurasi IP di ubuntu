@@ -8,3 +8,7 @@ iface eth1 inet static <== ganti ke dhcp jika mau otomatis
         netmask 255.255.255.0
         gateway 192.168.10.10
         dns-nameservers 8.8.8.8
+
+# restart interface
+sudo systemctl restart networking
+sudo service network-manager restart
