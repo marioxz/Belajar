@@ -1,0 +1,18 @@
+# Install Ubuntu Server
+
+1.  Pilih bahasa -> English
+2.  Pilih Lokasi -> Indonesia
+3.  Konfigure keyboard -> No  -> enter -> pilih US
+4.  Configure the network Hostname : pusat (isi sesuai dengan nama server yang diinginkan)
+5.  Set User -> admin_server
+6.  Set password -> 12345
+7.  encrypt home directory -> Yes
+8.  Partition disks -> Pilih Guided - use entire disk and set up LVM  
+9.  http proxy kosongkan saja
+10. Pilih no automatic updates
+11. Install grub boot -> Yes
+
+
+
+
+
