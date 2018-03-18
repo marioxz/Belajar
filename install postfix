@@ -48,3 +48,26 @@ example:
 Isi dari : /etc/postfix/virtual
     contact@example.com sammy
     admin@example.com sammy
+
+# apply the mapping by typing:
+sudo postmap /etc/postfix/virtual
+
+# restart postfix
+sudo systemctl restart postfix
+
+# allow connection service
+sudo ufw allow Postfix
+
+# Setting up the Environment to Match the Mail Location
+echo 'export MAIL=~/Maildir' | sudo tee -a /etc/bash.bashrc | sudo tee -a /etc/profile.d/mail.sh
+
+# To read the variable into your current session, you can source the /etc/profile.d/mail.sh file:
+source /etc/profile.d/mail.sh
+
+# install dovecot
+sudo apt-get install dovecot-imapd dovecot-pop3d
+
+
+
+
+
