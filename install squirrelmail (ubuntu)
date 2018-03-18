@@ -1,0 +1,24 @@
+# Installing SquirrelMail
+sudo apt-get install squirrelmail
+
+# konfigurasi
+sudo squirrelmail-configure
+pilih menu nomor 2
+next -> pilih no. 1 -> example.com
+next -> R (kembali)
+next -> pilih no. 4 -> pilih no.11 -> ubah menjadi true
+next -> S kemudian enter
+
+# configuration file to the apache2 directory in order to be able to access the web interface
+sudo cp /etc/squirrelmail/apache.conf /etc/apache2/sites-available/squirrelmail.conf
+
+# And enable it using
+sudo a2ensite squirrelmail.conf
+
+# Creating Mail Users
+sudo useradd myusername
+sudo passwd myusername
+sudo mkdir -p /var/www/html/myusername
+sudo usermod -m -d /var/www/html/myusername myusername
+
+
