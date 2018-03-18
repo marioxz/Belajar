@@ -1,0 +1,27 @@
+# install phpmyadmin
+sudo apt-get install phpmyadmin php-mbstring php-gettext
+
+#    For the server selection, choose apache2.
+#    Select yes when asked whether to use dbconfig-common to set up the database
+#    You will be prompted for your database administrator's password
+#    You will then be asked to choose and confirm a password for the phpMyAdmin application itself
+
+# The installation process actually adds the phpMyAdmin Apache configuration file into the /etc/apache2/conf-enabled/ directory, where it is automatically read.
+# The only thing we need to do is explicitly enable the PHP mcrypt and mbstring extensions, which we can do by typing:
+sudo phpenmod mcrypt
+sudo phpenmod mbstring
+
+# optional
+sudo nano /etc/apache2/apache2.conf
+# tambah di paling bawah
+Include /etc/phpmyadmin/apache.conf
+
+# restart
+sudo systemctl restart apache2
+sudo service apache2 restart
+
+
+
+
+
+
