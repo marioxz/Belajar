@@ -1,0 +1,152 @@
+# install ufw
+sudo apt install ufw
+
+
+sudo nano /etc/default/ufw
+# ubah : IPV6=yes
+
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# To configure your server to allow incoming SSH connections
+sudo ufw allow ssh
+
+# This will create firewall rules that will allow all connections on port 22, 
+# which is the port that the SSH daemon listens on by default. 
+# UFW knows what SSH and a number of other service names mean because they're listed as services in the /etc/services file.
+sudo ufw allow 22
+
+sudo ufw allow 2222
+
+# Enabling UFW
+sudo ufw enable
+
+# Allowing Other Connections
+# example
+sudo ufw allow http
+sudo ufw allow https
+# or
+sudo ufw allow 80
+sudo ufw allow 443
+
+# example port and protocol type
+sudo ufw allow ftp
+sudo ufw allow 21/tcp
+
+# Specific Port Ranges
+sudo ufw allow 6000:6007/tcp
+sudo ufw allow 6000:6007/udp
+
+# Specific IP Addresses
+sudo ufw allow from 15.15.15.51
+# with port
+sudo ufw allow from 15.15.15.51 to any port 22
+
+# Subnets
+sudo ufw allow from 15.15.15.0/24
+# with port
+sudo ufw allow from 15.15.15.0/24 to any port 22
+
+# Connections to a Specific Network Interface
+# look interface
+ip addr
+# if your server has a public network interface called eth0, you could allow HTTP traffic (port 80) 
+# to it with this command:
+sudo ufw allow in on eth0 to any port 80
+
+# if you want your MySQL database server (port 3306) to listen for connections on the private network interface eth1, 
+# for example, you could use this command:
+sudo ufw allow in on eth1 to any port 3306
+
+# Denying Connections
+sudo ufw deny http
+sudo ufw deny from 15.15.15.51
+
+# Deleting Rules
+# sudo ufw status numbered   ket : numbered is number of rule
+# example
+Numbered Output:
+Status: active
+
+     To                         Action      From
+     --                         ------      ----
+[ 1] 22                         ALLOW IN    15.15.15.0/24
+[ 2] 80                         ALLOW IN    Anywhere
+# command if want delete rule in to port 80:
+sudo ufw delete 2
+
+# By Actual Rule
+# The alternative to rule numbers is to specify the actual rule to delete. 
+# For example, if you want to remove the allow http rule, you could write it like this:
+sudo ufw delete allow http
+# or
+sudo ufw delete allow 80
+
+# Checking UFW Status and Rules
+sudo ufw status verbose
+
+# Disabling or Resetting UFW (optional)
+sudo ufw disable
+sudo ufw reset
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
