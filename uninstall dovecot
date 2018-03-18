@@ -1,0 +1,4 @@
+sudo systemctl stop dovecot
+sudo systemctl disable dovecot
+sudo apt-get purge dovecot-core
+sudo apt-get autoremove dovecot-core
