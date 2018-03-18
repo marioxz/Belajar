@@ -1,0 +1,50 @@
+# Install Postfix
+
+sudo apt-get update
+sudo DEBIAN_PRIORITY=low apt-get install postfix
+
+# Menu Pertama :
+1. Pilih Internet Site.
+2. Mail name => contoh : example.com
+3. Root and postmaster mail recipient: This is the Linux account that will be forwarded mail addressed to root@ and postmaster@.        Use your primary account for this. In our case, sammy.
+4. Other destinations to accept mail for: This defines the mail destinations that this Postfix instance will accept. If you need to add any other domains that this server will be responsible for receiving, add those here, otherwise, the default should work fine.
+5. Force synchronous pilih NO
+6. Local networks: This is a list of the networks that your mail server is configured to relay messages for. The default should work for most scenarios. If you choose to modify it, make sure to be very restrictive in regards to the network range.
+7. Pilih Yes
+8. Mailbox size limit isi 0 (disable)
+9. Local address extension character: +
+10. Internet Protocols : all
+
+# To be explicit, these are the settings we'll use for this guide:
+
+    General type of mail configuration?: Internet Site
+    System mail name: example.com (not mail.example.com)
+    Root and postmaster mail recipient: sammy
+    Other destinations to accept mail for: $myhostname, example.com, mail.example.com, localhost.example.com, localhost
+    Force synchronous updates on mail queue?: No
+    Local networks: 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+    Mailbox size limit: 0
+    Local address extension character: +
+    Internet protocols to use: all
+
+# Untuk atur ulang konfigurasi
+sudo dpkg-reconfigure postfix
+
+# tweak
+# set home_mailbox = Maildir
+sudo postconf -e 'home_mailbox= Maildir/'
+
+# set the location virtual_alias_maps table = /etc/postfix/virtual. :
+sudo postconf -e 'virtual_alias_maps= hash:/etc/postfix/virtual'
+
+# Map Mail Addresses to Linux Accounts
+sudo nano /etc/postfix/virtual
+
+The virtual alias map table uses a very simple format. On the left, you can list any addresses that you wish to accept email for. Afterwards, separated by whitespace, enter the Linux user you'd like that mail delivered to.
+
+For example, if you would like to accept email at contact@example.com and admin@example.com and would like to have those emails delivered to the sammy Linux user, you could set up your file like this:
+
+example:
+Isi dari : /etc/postfix/virtual
+    contact@example.com sammy
+    admin@example.com sammy
